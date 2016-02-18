@@ -15,10 +15,10 @@ const layoutGraph = (graph, {layerMargin, vertexMargin}) => {
   const vertices = [];
   for (const u of graph.vertices()) {
     const d = graph.vertex(u);
-    const {x, y, width, height} = positions.vertices[u];
+    const {x, y, width, height, layer, order} = positions.vertices[u];
     const x0 = d.x === undefined ? x : d.x;
     const y0 = d.y === undefined ? 0 : d.y;
-    vertices.push({u, x, y, x0, y0, width, height, d});
+    vertices.push({u, x, y, x0, y0, width, height, layer, order, d});
   }
 
   const enterPoints = (u, v) => {

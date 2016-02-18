@@ -2,7 +2,7 @@ import React from 'react'
 
 class Vertex extends React.Component {
   render() {
-    const {x, y, d} = this.props;
+    const {x, y, layer, d} = this.props;
     const {name, color} = d;
     return (
       <g
@@ -12,8 +12,9 @@ class Vertex extends React.Component {
           fill={color}
           r={5}/>
         <text
-          x={7}
+          x={layer === 0 ? -7 : 7}
           y={5}
+          textAnchor={layer === 0 ? 'end' : 'start'}
           fill={color}
           fontSize="10pt">
           {name}

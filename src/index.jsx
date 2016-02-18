@@ -46,7 +46,7 @@ class App extends React.Component {
   }
 
   render() {
-    const layerMargin = 180;
+    const layerMargin = 150;
     const vertexMargin = 10;
 
     const {graph} = this.state;
@@ -65,7 +65,9 @@ class App extends React.Component {
           <text>{`|U|=${nu} |L|=${nl} |E|=${ne} p=${(ne / nu / nl).toFixed(3)}`}</text>
           {graphs.map(([name, g], i) => <g key={i} transform={`translate(${600 * i},50)`}>
             <text y="-20">{name}</text>
-            <NetworkDiagramContent layout={layoutGraph(g, {layerMargin, vertexMargin})}/>
+            <g transform="translate(100,0)">
+              <NetworkDiagramContent layout={layoutGraph(g, {layerMargin, vertexMargin})}/>
+            </g>
           </g>)}
         </g>
       </NetworkDiagram>
