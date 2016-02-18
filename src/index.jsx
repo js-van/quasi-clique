@@ -5,7 +5,11 @@ import Graph from 'egraph/lib/graph'
 import NetworkDiagram from './network-diagram'
 import NetworkDiagramContent from './network-diagram-content'
 import layoutGraph from './layout-graph'
-import {edgeConcentrationNewbery, edgeConcentrationMaxrect} from './transformers'
+import {
+  edgeConcentrationNewbery,
+  edgeConcentrationMaxrect,
+  quasiClique,
+} from './transformers'
 
 class App extends React.Component {
   constructor() {
@@ -54,6 +58,9 @@ class App extends React.Component {
       ['Input', graph],
       ['MaxRect', edgeConcentrationMaxrect(graph)],
       ['Newbery', edgeConcentrationNewbery(graph)],
+      ['QuasiClique (mu=0.3)', quasiClique(graph, 0.3)],
+      ['QuasiClique (mu=0.6)', quasiClique(graph, 0.6)],
+      ['QuasiClique (mu=0.9)', quasiClique(graph, 0.9)],
     ];
     const nu = graph.vertices().filter((u) => graph.inDegree(u) === 0).length;
     const nl = graph.vertices().filter((v) => graph.outDegree(v) === 0).length;

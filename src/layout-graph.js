@@ -1,7 +1,50 @@
+import Graph from 'egraph/lib/graph'
 import Layouter from 'egraph/lib/layouter/sugiyama'
 import layerAssignment from './layer-assignment'
 
-const layoutGraph = (graph, {layerMargin, vertexMargin}) => {
+const components = (graph) => {
+  const visited = new Set();
+  let result = [];
+  for (const u of graph.vertices()) {
+    if (visited.has(u)) {
+      continue;
+    }
+    const queue = [u];
+    const vertices = new Set();
+    while (queue.length) {
+      const v = queue.shift();
+      if (visited.has(v)) {
+        continue;
+      }
+      visited.add(v);
+      vertices.add(v);
+      for (const w of graph.inVertices(v)) {
+        queue.push(w);
+      }
+      for (const w of graph.outVertices(v)) {
+        queue.push(w);
+      }
+    }
+    result.push(Array.from(vertices));
+  }
+  return result;
+};
+
+const copy = (g) => {
+  const graph = new Graph();
+  for (const component of components(g)) {
+    for (const u of component) {
+      graph.addVertex(u, g.vertex(u));
+    }
+  }
+  for (const [u, v] of g.edges()) {
+    graph.addEdge(u, v, g.edge(u, v));
+  }
+  return graph;
+};
+
+const layoutGraph = (g, {layerMargin, vertexMargin}) => {
+  const graph = copy(g);
   const layouter = new Layouter()
     .layerAssignment(layerAssignment(graph))
     .layerMargin(layerMargin)
