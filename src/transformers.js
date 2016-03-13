@@ -117,3 +117,8 @@ export const quasiClique = (g, mu) => {
   }
   return graph;
 };
+
+export const mbea = (g) => {
+  const graph = copy(g);
+  return graph;
+};

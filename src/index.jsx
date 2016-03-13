@@ -9,6 +9,7 @@ import {
   edgeConcentrationNewbery,
   edgeConcentrationMaxrect,
   quasiClique,
+  mbea,
 } from './transformers'
 
 class App extends React.Component {
@@ -56,11 +57,7 @@ class App extends React.Component {
     const {graph} = this.state;
     const graphs = [
       ['Input', graph],
-      ['MaxRect', edgeConcentrationMaxrect(graph)],
-      ['Newbery', edgeConcentrationNewbery(graph)],
-      ['QuasiClique (mu=0.3)', quasiClique(graph, 0.3)],
-      ['QuasiClique (mu=0.6)', quasiClique(graph, 0.6)],
-      ['QuasiClique (mu=0.9)', quasiClique(graph, 0.9)],
+      ['MBEA', mbea(graph)],
     ];
     const nu = graph.vertices().filter((u) => graph.inDegree(u) === 0).length;
     const nl = graph.vertices().filter((v) => graph.outDegree(v) === 0).length;
