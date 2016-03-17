@@ -118,8 +118,6 @@ export const quasiClique = (g, mu) => {
   return graph;
 };
 
-
-
 export const mbea = (g) => {
   const graph = copy(g);
   const U_array = graph.vertices().filter((u) => graph.outDegree(u) );
@@ -205,3 +203,4 @@ const biclique_find = (graph, L, R, P, Q, cliques) => {
     P = new Set(Array.from(P).filter((v) => !C.has(v)));
   }
 };
+
