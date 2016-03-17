@@ -58,6 +58,11 @@ class App extends React.Component {
     const graphs = [
       ['Input', graph],
       ['MBEA', mbea(graph)],
+      ['MaxRect', edgeConcentrationMaxrect(graph)],
+      ['Newbery', edgeConcentrationNewbery(graph)],
+      ['QuasiClique (mu=1)', quasiClique(graph, 1)],
+      ['QuasiClique (mu=0)', quasiClique(graph, 0)],
+      ['QuasiClique (mu=0.9)', quasiClique(graph, 0.9)],
     ];
     const nu = graph.vertices().filter((u) => graph.inDegree(u) === 0).length;
     const nl = graph.vertices().filter((v) => graph.outDegree(v) === 0).length;
