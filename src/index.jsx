@@ -9,6 +9,7 @@ import {
   edgeConcentrationNewbery,
   edgeConcentrationMaxrect,
   quasiClique,
+  mbea,
 } from './transformers'
 
 class App extends React.Component {
@@ -56,6 +57,7 @@ class App extends React.Component {
     const {graph} = this.state;
     const graphs = [
       ['Input', graph],
+      ['MBEA', mbea(graph)],
       ['MaxRect', edgeConcentrationMaxrect(graph)],
       ['Newbery', edgeConcentrationNewbery(graph)],
       ['QuasiClique (mu=0.3)', quasiClique(graph, 0.3)],
